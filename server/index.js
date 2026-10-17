@@ -203,29 +203,22 @@ app.post("/api/auth/register", authLimiter, async (request, response, next) => {
         .status(400)
         .json({ message: "Enter a valid email address." });
     if (password.length < 8 || password.length > 72)
-      return response
-        .status(400)
-        .json({
-          message: "Your password must be between 8 and 72 characters.",
-        });
+      return response.status(400).json({
+        message: "Your password must be between 8 and 72 characters.",
+      });
 
     const passwordHash = await bcrypt.hash(password, 12);
     const user = await User.create({ name, email, password: passwordHash });
     const token = jwt.sign({ sub: user.id }, jwtSecret, { expiresIn: "7d" });
-    return response
-      .status(201)
-      .json({
-        token,
-        user: { id: user.id, name: user.name, email: user.email },
-      });
+    return response.status(201).json({
+      token,
+      user: { id: user.id, name: user.name, email: user.email },
+    });
   } catch (error) {
     if (error.code === 11000)
-      return response
-        .status(409)
-        .json({
-          message:
-            "An account with that email already exists. Sign in instead.",
-        });
+      return response.status(409).json({
+        message: "An account with that email already exists. Sign in instead.",
+      });
     return next(error);
   }
 });
@@ -322,13 +315,11 @@ app.use((error, _request, response, next) => {
     return response.status(400).json({ message });
   }
   console.error("Marketplace API error:", error);
-  return response
-    .status(error.status || 500)
-    .json({
-      message: error.status
-        ? error.message
-        : "Something went wrong. Please try again.",
-    });
+  return response.status(error.status || 500).json({
+    message: error.status
+      ? error.message
+      : "Something went wrong. Please try again.",
+  });
 });
 
 try {
