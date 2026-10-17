@@ -172,7 +172,7 @@ function App() {
       setNotice('')
       setDialog('')
     } catch (error) {
-      setNotice(error.message || 'The marketplace API is unavailable. Start the API and try again.')
+      setNotice(error instanceof TypeError ? 'The marketplace API is unavailable. Start the API and try again.' : error.message || 'We could not sign you in. Please try again.')
     } finally {
       setBusy(false)
     }
@@ -196,10 +196,11 @@ function App() {
       setActiveCategory('All')
       setDialog('')
       setPhoto(null)
+      setPhotoPreview('')
       setNotice('Your listing is live. Good luck finding it a new home!')
       document.querySelector('#discover')?.scrollIntoView({ behavior: 'smooth' })
     } catch (error) {
-      setNotice(error.message || 'The marketplace API is unavailable. Start the API and try again.')
+      setNotice(error instanceof TypeError ? 'The marketplace API is unavailable. Start the API and try again.' : error.message || 'Your listing could not be published.')
     } finally {
       setBusy(false)
     }
@@ -225,7 +226,7 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell min-h-screen">
       <header className="site-header">
         <div className="topbar">
           <a className="brand" href="#" aria-label="Bazaar home"><span className="brand-mark"><span /><span /><span /><span /></span><span>bazaar<span className="brand-dot">.</span></span></a>
