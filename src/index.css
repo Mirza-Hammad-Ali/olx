@@ -14,11 +14,37 @@
   font-feature-settings: "ss01" on;
 }
 
-* { box-sizing: border-box; }
-html { min-width: 360px; scroll-behavior: smooth; }
-body { margin: 0; min-width: 360px; min-height: 100vh; }
-button, input, select { font: inherit; }
-button { cursor: pointer; }
-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #adba80; outline-offset: 3px; }
-a { color: inherit; }
-::selection { color: #244638; background: #dce8d5; }
+* {
+  box-sizing: border-box;
+}
+html {
+  min-width: 360px;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  min-width: 360px;
+  min-height: 100vh;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #adba80;
+  outline-offset: 3px;
+}
+a {
+  color: inherit;
+}
+::selection {
+  color: #244638;
+  background: #dce8d5;
+}
